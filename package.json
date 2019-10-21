@@ -2,7 +2,7 @@
   "name": "smecloud-admin-api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.js", 
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,8 +17,12 @@
   },
   "homepage": "https://github.com/phamduykien/smecloud-tool-api#readme",
   "dependencies": {
+    "aws-sdk": "^2.553.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongoose": "^5.7.5",
+    "mongoose-paginate-v2": "^1.3.2",
+    "redis": "^2.8.0",
     "socket.io": "^2.3.0"
   },
   "devDependencies": {
