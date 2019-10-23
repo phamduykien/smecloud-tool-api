@@ -47,6 +47,33 @@ router.get('/server', async (req, res) => {
 });
 
 /**
+ * Lay cac cau hinh server
+ * CreatedBy PDKIEN 21/10/2019
+ */
+router.get('/key/:id?', async (req, res) => {
+    try {
+        let id = req.params["id"];
+        if (id) {
+            //Lay thong tin server voi id tu trong db mongo
+            let server = await RedisServer.findById(id);
+            if (server) {
+                let opt = { host: server.host, port: server.port }, client = redis.createClient(opt);
+                client.keys("*", (err, arr) => {
+                    if (err) {
+                        Util.handlePageError(res, e)
+                    } else {
+                        res.send(arr);
+                    }
+                });
+
+            }
+        }
+    } catch (e) {
+        return Util.handlePageError(res, e)
+    }
+});
+
+/**
  * Them mot cau hinh server
  * CreatedBy PDKIEN 21/10/2019
  */
