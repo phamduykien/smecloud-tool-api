@@ -1,6 +1,9 @@
 class Util {
     handlePageError(res, e) {
-        res.setStatus(500).send(e.message);
+        console.log("Error " + e);
+        if (!res.finished) {
+            res.status(500).send(e.message);
+        }
     }
 }
 
