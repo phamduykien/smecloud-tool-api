@@ -1,6 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const redisController = require('./controllers/redis')
+const awsController = require('./controllers/aws')
 const mongoose = require('mongoose')
 const cors = require('cors')
 
@@ -8,9 +9,10 @@ const app = express()
 const port = process.env.PORT || 3000
 
 app.use(cors());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true, imit: '50mb' }));
+app.use(bodyParser.json({ limit: '50mb' }));
 app.use('/api/redis', redisController);
+app.use('/api/aws', awsController);
 
 
 const MONGODB_HOST = '127.0.0.1'
